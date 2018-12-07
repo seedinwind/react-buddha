@@ -13,33 +13,20 @@ class Gaoseng extends Component{
 
     componentWillMount(){
         console.log("componentWillMount start")
-        this.timerID = setInterval(
-            () => this.tick(),
-            1000
-        );
+
        //网络请求，获取内容
         this.setState({passage:"fetch"})
-        fetch("http://47.94.95.216/content/poem/author?author=李商隐",{method:"get",headers: new Headers({
-            'Access-Control-Allow-Origin':'*',
-// 响应类型
-        'Access-Control-Allow-Methods':'GET',
-// 响应头设置
-        'Access-Control-Allow-Headers':'x-requested-with,content-type',
-        })})
-            .then(function (response) {
-                this.setState({passage:response.statusText})
+        fetch("http://localhost:8080/content/poem/title?title=%E6%AC%A1%E5%8C%97%E5%9B%BA%E5%B1%B1%E4%B8%8B",{method:"get"})
+            .then((response)=> {
+               return response.json()
+            })
+            .then((res)=>{
+                this.setState({passage:res.data[0].content})
+                console.log(res)
             })
             .catch(function (error) {
                 console.log(error.toString())
             })
-    }
-
-
-
-    tick(){
-        this.setState({
-            passage:""
-        });
     }
 
     render(){
