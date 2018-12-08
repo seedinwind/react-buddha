@@ -3,11 +3,12 @@
  */
 import React, { Component } from 'react';
 import 'whatwg-fetch'
+import {SourceList} from './SourceList.js'
 
 class Gaoseng extends Component{
     constructor(props){
         super(props)
-        this.state={passage:"init"}
+        this.state={passage:[]}
         console.log("constructor start")
     }
 
@@ -15,13 +16,12 @@ class Gaoseng extends Component{
         console.log("componentWillMount start")
 
        //网络请求，获取内容
-        this.setState({passage:"fetch"})
-        fetch("http://localhost:8080/content/poem/title?title=%E6%AC%A1%E5%8C%97%E5%9B%BA%E5%B1%B1%E4%B8%8B",{method:"get"})
+        fetch("http://localhost:8080/admin/translate/gaoseng",{method:"get"})
             .then((response)=> {
                return response.json()
             })
             .then((res)=>{
-                this.setState({passage:res.data[0].content})
+                this.setState({passage:res.data})
                 console.log(res)
             })
             .catch(function (error) {
@@ -30,7 +30,15 @@ class Gaoseng extends Component{
     }
 
     render(){
-        return <p>this is the passage:{this.state.passage}</p>
+        let list;
+        if(JSON.stringify(this.state.passage)!=='[]') {
+            console.log("showlist")
+            list = <SourceList passages={this.state.passage}/>;
+            }else{
+            console.log("showEmpty")
+            list = <ul></ul>;
+        }
+        return <div>{list}</div>
     }
 }
 
