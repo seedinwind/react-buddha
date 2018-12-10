@@ -6,12 +6,17 @@ class SourceList extends Component{
         super(props)
         this.passage=this.props.passages
         console.log(this.passage.toString())
+        this.clickItem=this.clickItem.bind(this)
+    }
+
+    clickItem(e){
+         this.props.onSelectSourceChange(e)
     }
 
     render() {
         console.log(this.props.passages.toString())
        let listItems =this.props.passages.map((number) =>
-            <ListItem key={number.id} passage={number}/>
+            <ListItem onItemClick={this.clickItem} key={number.id} value={number}/>
         );
         return <ul>
             {listItems}

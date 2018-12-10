@@ -8,8 +8,10 @@ import {SourceList} from './SourceList.js'
 class Gaoseng extends Component{
     constructor(props){
         super(props)
-        this.state={passage:[]}
+        this.state={passage:[],
+        current:""}
         console.log("constructor start")
+        this.onSelectSourceChange=this.onSelectSourceChange.bind(this)
     }
 
     componentWillMount(){
@@ -29,16 +31,24 @@ class Gaoseng extends Component{
             })
     }
 
+    onSelectSourceChange(currentPassage){
+        console.log(currentPassage)
+        this.setState({current:currentPassage.content})
+    }
+
     render(){
         let list;
         if(JSON.stringify(this.state.passage)!=='[]') {
             console.log("showlist")
-            list = <SourceList passages={this.state.passage}/>;
+            list = <SourceList  passages={this.state.passage} onSelectSourceChange={this.onSelectSourceChange}/>;
             }else{
             console.log("showEmpty")
             list = <ul></ul>;
         }
-        return <div>{list}</div>
+        return <div className="App-header">
+            <div className="Gaoseng-menu">{list}</div>
+            <div className="Gaoseng-content" >{this.state.current}</div>
+            </div>
     }
 }
 

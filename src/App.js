@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import './App.css';
+import './css/App.css';
+import './css/Gaoseng.css';
 import {Gaoseng} from './translate/Gaoseng.js'
 
 class App extends Component {
@@ -7,7 +8,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <Gaoseng/>
+          <Gaoseng className="Gaoseng"/>
         </header>
       </div>
     );
