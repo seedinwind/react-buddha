@@ -1,29 +1,32 @@
 /**
  * Created by seedinwind on 18/12/4.
  */
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import 'whatwg-fetch'
 import {SourceList} from './SourceList.js'
+import {TaskEditor} from './TaskEditor.js'
 
-class Gaoseng extends Component{
-    constructor(props){
+class Gaoseng extends Component {
+    constructor(props) {
         super(props)
-        this.state={passage:[],
-        current:""}
+        this.state = {
+            passage: [],
+            current: ""
+        }
         console.log("constructor start")
-        this.onSelectSourceChange=this.onSelectSourceChange.bind(this)
+        this.onSelectSourceChange = this.onSelectSourceChange.bind(this)
     }
 
-    componentWillMount(){
+    componentWillMount() {
         console.log("componentWillMount start")
 
-       //网络请求，获取内容
-        fetch("http://localhost:8080/admin/translate/gaoseng",{method:"get"})
-            .then((response)=> {
-               return response.json()
+        //网络请求，获取内容
+        fetch("http://localhost:8080/admin/translate/gaoseng", {method: "get"})
+            .then((response) => {
+                return response.json()
             })
-            .then((res)=>{
-                this.setState({passage:res.data})
+            .then((res) => {
+                this.setState({passage: res.data})
                 console.log(res)
             })
             .catch(function (error) {
@@ -31,24 +34,25 @@ class Gaoseng extends Component{
             })
     }
 
-    onSelectSourceChange(currentPassage){
+    onSelectSourceChange(currentPassage) {
         console.log(currentPassage)
-        this.setState({current:currentPassage.content})
+        this.setState({current: currentPassage.content})
     }
 
-    render(){
+    render() {
         let list;
-        if(JSON.stringify(this.state.passage)!=='[]') {
+        if (JSON.stringify(this.state.passage) !== '[]') {
             console.log("showlist")
-            list = <SourceList  passages={this.state.passage} onSelectSourceChange={this.onSelectSourceChange}/>;
-            }else{
+            list = <SourceList passages={this.state.passage} onSelectSourceChange={this.onSelectSourceChange}/>;
+        } else {
             console.log("showEmpty")
             list = <ul></ul>;
         }
         return <div className="App-header">
             <div className="Gaoseng-menu">{list}</div>
-            <div className="Gaoseng-content" >{this.state.current}</div>
-            </div>
+            <div className="Gaoseng-content">{this.state.current}</div>
+            <TaskEditor/>
+        </div>
     }
 }
 
