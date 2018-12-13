@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import '../css/TaskEditor.css'
 
 class TaskEditor extends Component {
     constructor(props) {
@@ -55,27 +56,32 @@ class TaskEditor extends Component {
 
     render() {
         return <form className="TaskEditor" onSubmit={this.onSubmit}>
-            <label>
+            <div className="TaskEditor-item"  >
                标题：
-                <textarea value={this.state.title} onChange={this.handleChange.bind(this,0)} />
-            </label>
-            <label>
+                <textarea className="TaskEditor-short-text"  value={this.state.title} onChange={this.handleChange.bind(this,0)} />
+            </div>
+            <br/>
+            <div  className="TaskEditor-item" >
                 原文：
-                <textarea value={this.state.content} onChange={this.handleChange.bind(this,1)} />
-            </label>
-            <label>
+                <textarea className="TaskEditor-long-text"   value={this.state.content} onChange={this.handleChange.bind(this,1)} />
+            </div>
+            <br/>
+            <div  className="TaskEditor-item" >
                 来源：
-                <textarea value={this.state.source} onChange={this.handleChange.bind(this,2)} />
-            </label>
-            <label>
+                <textarea className="TaskEditor-short-text"  value={this.state.source} onChange={this.handleChange.bind(this,2)} />
+            </div>
+            <br/>
+            <div  className="TaskEditor-item" >
                 标签：
-                <textarea value={this.state.label} onChange={this.handleChange.bind(this,3)} />
-            </label>
-            <label>
+                <textarea className="TaskEditor-short-text"  value={this.state.label} onChange={this.handleChange.bind(this,3)} />
+            </div>
+            <br/>
+            <div  className="TaskEditor-item" >
                 备注：
-                <textarea value={this.state.extra} onChange={this.handleChange.bind(this,4)} />
-            </label>
-            <input type="submit" value="保存" />
+                <textarea className="TaskEditor-short-text"  value={this.state.extra} onChange={this.handleChange.bind(this,4)} />
+            </div>
+            <br/>
+            <input style={{selfAlign:"center"}} type="submit" value="保存" />
         </form>
     }
 }

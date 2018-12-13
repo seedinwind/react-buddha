@@ -48,10 +48,19 @@ class Gaoseng extends Component {
             console.log("showEmpty")
             list = <ul></ul>;
         }
+
+        let editor
+        if (this.state.current !== "") {
+            editor = <TaskEditor/>
+        }else{
+                editor=<br/>
+        }
         return <div className="App-header">
             <div className="Gaoseng-menu">{list}</div>
             <div className="Gaoseng-content">{this.state.current}</div>
-            <TaskEditor/>
+            <div className="Gaoseng-editor">
+                {editor}
+            </div>
         </div>
     }
 }

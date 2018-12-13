@@ -19,3 +19,9 @@
     flex-grow: 0;
     white-space: pre-wrap;
 }
+
+.Gaoseng-editor{
+    flex-basis: 800px;
+    flex-grow: 1;
+    white-space: pre-wrap;
+}
