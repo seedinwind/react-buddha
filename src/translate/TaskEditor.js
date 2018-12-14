@@ -51,7 +51,7 @@ class TaskEditor extends Component {
                 extra:this.state.extra
             })})
             .then(response => {
-                    if (response.json().code === 0) {
+                    if (response.json().error=== 0) {
                         this.setState(
                             {
                                   title:"",
