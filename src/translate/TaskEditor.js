@@ -43,7 +43,7 @@ class TaskEditor extends Component {
     }
 
     onSubmit(event) {
-        fetch("http://localhost:8080/admin/translate/gaoseng/task", {method: "POST",headers:{"Content-Type": "application/json"}, body: JSON.stringify({
+        fetch("http://47.94.95.216/wise/admin/translate/gaoseng/task", {method: "POST",headers:{"Content-Type": "application/json"}, body: JSON.stringify({
                 title:this.state.title,
                 content:this.state.content,
                 source:this.state.source,

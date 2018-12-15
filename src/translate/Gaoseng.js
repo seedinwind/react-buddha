@@ -21,7 +21,7 @@ class Gaoseng extends Component {
         console.log("componentWillMount start")
 
         //网络请求，获取内容
-        fetch("http://localhost:8080/admin/translate/gaoseng", {method: "get"})
+        fetch("http://47.94.95.216/wise/admin/translate/gaoseng", {method: "get"})
             .then((response) => {
                 return response.json()
             })
