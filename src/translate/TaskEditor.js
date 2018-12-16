@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import '../css/TaskEditor.css'
+import postJson from '../net/util.js'
 
 class TaskEditor extends Component {
     constructor(props) {
@@ -43,13 +44,13 @@ class TaskEditor extends Component {
     }
 
     onSubmit(event) {
-        fetch("http://47.94.95.216/wise/admin/translate/gaoseng/task", {method: "POST",headers:{"Content-Type": "application/json"}, body: JSON.stringify({
+        postJson("http://47.94.95.216/wise/admin/translate/gaoseng/task",  {
                 title:this.state.title,
                 content:this.state.content,
                 source:this.state.source,
                 label:this.state.label,
                 extra:this.state.extra
-            })})
+            })
             .then(response => {
                     if (response.json().error=== 0) {
                         this.setState(
