@@ -3,16 +3,14 @@
  */
 
 import 'whatwg-fetch'
-import 'es6-promise'
-export function get(url) {
+// import 'es6-promise'
+  function get(url) {
     let result = fetch(url, {
-        credentials: 'include',
+        // credentials: 'include',
         headers: {
-            'Access-Control-Allow-Origin': '*',
             'Accept': 'application/json, text/plain, */*'
         },
         // 设置允许cors跨域
-        mode: 'cors',
         method:"GET"
     });
     return result;
@@ -34,10 +32,9 @@ function obj2params(obj) {
 }
 
 // 发送 post 请求
-export function postJson(url, paramsObj) {
+  function postJson(url, paramsObj){
     let result = fetch(url, {
         method: 'POST',
-        credentials: 'include',
         headers: {
             'Accept': 'application/json, text/plain, */*',
             "Content-Type": "application/json"
@@ -47,3 +44,5 @@ export function postJson(url, paramsObj) {
 
     return result;
 }
+
+export {get,postJson};

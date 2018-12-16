@@ -2,7 +2,7 @@
  * Created by seedinwind on 18/12/4.
  */
 import React, {Component} from 'react';
-import get from '../net/util.js'
+import {get} from'../net/util.js'
 import {SourceList} from './SourceList.js'
 import {TaskEditor} from './TaskEditor.js'
 
@@ -21,7 +21,7 @@ class Gaoseng extends Component {
         console.log("componentWillMount start")
 
         //网络请求，获取内容
-        get("http://47.94.95.216/wise/admin/translate/gaoseng")
+        get("http://localhost:8080/admin/translate/gaoseng")
             .then((response) => {
                 return response.json()
             })

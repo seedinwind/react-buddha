@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import '../css/TaskEditor.css'
-import postJson from '../net/util.js'
+import {postJson} from '../net/util.js'
 
 class TaskEditor extends Component {
     constructor(props) {
@@ -44,7 +44,7 @@ class TaskEditor extends Component {
     }
 
     onSubmit(event) {
-        postJson("http://47.94.95.216/wise/admin/translate/gaoseng/task",  {
+        postJson("http://localhost:8080/admin/translate/gaoseng/task",  {
                 title:this.state.title,
                 content:this.state.content,
                 source:this.state.source,
