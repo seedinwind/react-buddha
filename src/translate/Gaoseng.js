@@ -21,7 +21,7 @@ class Gaoseng extends Component {
         console.log("componentWillMount start")
 
         //网络请求，获取内容
-        get("http://localhost:8080/admin/translate/gaoseng")
+        get("http://localhost:8089/admin/translate/gaoseng")
             .then((response) => {
                 return response.json()
             })
@@ -51,7 +51,7 @@ class Gaoseng extends Component {
 
         let editor
         if (this.state.current !== "") {
-            editor = <TaskEditor/>
+            editor = <TaskEditor passage={this.state.current}/>
         }else{
                 editor=<br/>
         }
