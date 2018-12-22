@@ -13,19 +13,19 @@ class TaskEditor extends Component {
             title: ""
         }
         this.onSubmit = this.onSubmit.bind(this)
-        this.showNext=this.showNext.bind(this)
-        this.showMore=this.showMore.bind(this)
-        this.showLess=this.showLess.bind(this)
+        this.showNext = this.showNext.bind(this)
+        this.showMore = this.showMore.bind(this)
+        this.showLess = this.showLess.bind(this)
 
         this.updateProps(props)
     }
 
-    updateProps(propsParam){
-        this.passages=propsParam.passage.split("\n").filter((it)=>{
-            return it!==""
+    updateProps(propsParam) {
+        this.passages = propsParam.passage.split("\n").filter((it) => {
+            return it !== ""
         })
-        this.index=0
-        this.offset=0
+        this.index = 0
+        this.offset = 0
         console.log(this.passages[0])
     }
 
@@ -61,43 +61,45 @@ class TaskEditor extends Component {
 
     }
 
-    showNext(){
-        if(this.index<this.passages.length){
+    showNext() {
+        if (this.index < this.passages.length) {
             this.setState({content: this.passages[this.index]})
         }
         this.index++
+        this.offset = 0
     }
 
-    showMore(){
+    showMore() {
         this.offset++
-        if(this.index+this.offset<this.passages.length){
-            this.setState({content:this.state.content+"\n"+ this.passages[this.index+this.offset]})
+        if (this.index + this.offset < this.passages.length) {
+            this.setState({content: this.state.content + "\n" + this.passages[this.index-1 + this.offset]})
         }
     }
-    showLess(){
-        if(this.offset>0){
+
+    showLess() {
+        if (this.offset > 0) {
             this.offset--
         }
-        this.setState({content:this.state.content.substring(0,this.state.content.lastIndexOf("\n"))})
+        this.setState({content: this.state.content.substring(0, this.state.content.lastIndexOf("\n"))})
     }
 
     onSubmit(event) {
-        postJson("http://localhost:8089/admin/translate/gaoseng/task",  {
-                title:this.state.title,
-                content:this.state.content,
-                source:this.state.source,
-                label:this.state.label,
-                extra:this.state.extra
-            })
+        postJson("http://localhost:8089/admin/translate/gaoseng/task", {
+            title: this.state.title,
+            content: this.state.content,
+            source: this.state.source,
+            label: this.state.label,
+            extra: this.state.extra
+        })
             .then(response => {
-                    if (response.json().error=== 0) {
+                    if (response.json().error === 0) {
                         this.setState(
                             {
-                                  title:"",
-                                  content:"",
-                                  source:"",
-                                  label:"",
-                                  extra:""
+                                title: "",
+                                content: "",
+                                source: "",
+                                label: "",
+                                extra: ""
                             }
                         )
                         console.log("success")
@@ -117,7 +119,7 @@ class TaskEditor extends Component {
             <br/>
             <div className="TaskEditor-item">
                 原文：
-                <div className="TaskEditor-long-text" >{this.state.content}</div>>
+                <div className="TaskEditor-long-text">{this.state.content}</div>>
             </div>
             <br/>
             <div className="TaskEditor-item">
@@ -139,7 +141,7 @@ class TaskEditor extends Component {
             </div>
             <br/>
             <input style={{selfAlign: "center"}} type="submit" value="保存"/>
-            <input type="button" value="next" onClick={this.showNext} />
+            <input type="button" value="next" onClick={this.showNext}/>
             <input type="button" value="more" onClick={this.showMore}/>
             <input type="button" value="less" onClick={this.showLess}/>
 
